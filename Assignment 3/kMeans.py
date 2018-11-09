@@ -8,6 +8,9 @@ from numpy import *
 def distEuclid(vecA, vecB):
     return sqrt(sum(power(vecA - vecB, 2))) #la.norm(vecA-vecB)
 
+def distCosine(vecA, vecB):
+    return dot(vecA,vecB)/(linalg.norm(vecA) * linalg.norm(vecB))
+
 def randCent(dataSet, k):
 	n = shape(dataSet)[1]
 	centroids = zeros((k,n), dtype=float)
