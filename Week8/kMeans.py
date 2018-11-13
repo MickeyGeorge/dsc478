@@ -3,8 +3,8 @@ Created on Feb 16, 2011
 k Means Clustering for Ch10 of Machine Learning in Action
 @author: Peter Harrington
 '''
-#from numpy import *
-import numpy as np
+from numpy import *
+#import numpy as np
 
 def distEuclid(vecA, vecB):
     return sqrt(sum(power(vecA - vecB, 2))) #la.norm(vecA-vecB)
