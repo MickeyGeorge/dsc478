@@ -67,7 +67,7 @@ def cross_validate_user(dataMat, user, test_ratio, estMethod=standEst, simMeas=p
 	number_of_items = np.shape(dataMat)[1]
 	rated_items_by_user = np.array([i for i in range(number_of_items) if dataMat[user,i]>0])
 	test_size = test_ratio * len(rated_items_by_user)
-	test_indices = np.random.randint(0, len(rated_items_by_user), test_size)
+	test_indices = np.random.randint(0, len(rated_items_by_user), int(test_size)) # errors here, added int wrapper
 	withheld_items = rated_items_by_user[test_indices]
 	original_user_profile = np.copy(dataMat[user])
 	dataMat[user, withheld_items] = 0 # So that the withheld test items is not used in the rating estimation below
@@ -89,10 +89,30 @@ def cross_validate_user(dataMat, user, test_ratio, estMethod=standEst, simMeas=p
 	return error_u, count_u
 	
 def test(dataMat, test_ratio, estMethod):
+    
+    
     # Write this function to iterate over all users and for each perform evaluation by calling
 	# the above cross_validate_user function on each user. MAE will be the ratio of total error 
 	# across all test cases to the total number of test cases, for all users
-	print 'Mean Absoloute Error for ',estMethod,' : ', MAE
+    
+    # b.Complete the definition for the function "test". This function iterates over all users and for each performs
+    # evaluation (by calling the provided "cross_validate_user" function), and returns the error information
+    # necessary to compute Mean Absolute Error (MAE). Use this function to perform evaluation (wiht 20% testratio
+    # for each user) comparing MAE results using standard item-based collaborative filtering (based on the
+    # rating prediction function "standEst") with results using the SVD-based version of the rating item-based CF
+    # (using "svdEst" as the prediction engine). [Note: See comments provided in the module for hints on
+    # accomplishing these tasks.]
+
+    
+    # Michael Janke Code
+    
+#    cross_validate_user(dataMat, user, test_ratio, estMethod=standEst, simMeas=pearsSim):
+
+    for index, row in dataMat.iterrows():
+        error_u, count_u = cross_validate_user(dataMat, index, test_ratio, estMethod)  
+        print error_u      
+    
+	# print 'Mean Absoloute Error for ',estMethod,' : ', MAE
 
 def print_most_similar_jokes(dataMat, jokes, queryJoke, k, metric=pearsSim):
 	# Write this function to find the k most similar jokes (based on user ratings) to a queryJoke
@@ -101,11 +121,12 @@ def print_most_similar_jokes(dataMat, jokes, queryJoke, k, metric=pearsSim):
 	# other joke rating vectors and return the top k. Note that this is the same as performing KNN on the 
     # columns of dataMat. The function must retrieve the text of the joke from 'jokes.csv' file and print both
 	# the queryJoke text as well as the text of the returned jokes.
-
+    print 'Most Similar'
+    
 def load_jokes(file):
-	jokes = genfromtxt(file, delimiter=',', dtype=str)
-	jokes = np.array(jokes[:,1])
-	return jokes
+    jokes = genfromtxt(file, delimiter=',', dtype=str)
+    jokes = np.array(jokes[:,1])
+    return jokes
 
 def get_joke_text(jokes, id):
 	return jokes[id]
