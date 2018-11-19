@@ -1,0 +1,68 @@
+DISTRICT: only one value
+CRASH_COUNTY: only one value
+POLICE_AGENCY: not relevant
+TIME_OF_DAY: too specific, prefer hour
+SCH_BUS_IND: redundant, missing data
+SCH_ZONE_IND: redundant, missing data
+TOTAL_UNITS: undefined meaning
+FATAL_COUNT: redundant
+INJURY_COUNT: redundant
+MAJ_INJ_COUNT: redundant
+MOD_INJ_COUNT: redundant
+MIN_INJ_COUNT: redundant
+UNK_INJ_DEG_COUNT: excluded
+UNK_INJ_PER_COUNT: excluded
+UNB_DEATH_COUNT: not relevant
+UNB_MAJ_INJ_COUNT: not relevant
+BELTED_DEATH_COUNT: not relevant
+BELTED_MAJ_INJ_COUNT: not relevant
+MCYCLE_DEATH_COUNT:	not relevant
+MCYCLE_MAJ_INJ_COUNT: not relevant
+BICYCLE_DEATH_COUNT: not relevant
+BICYCLE_MAJ_INJ_COUNT: not relevant
+PED_DEATH_COUNT: not relevant
+PED_MAJ_INJ_COUNT: not relevant
+MAX_SEVERITY_LEVEL: redundant
+LATITUDE: not relevant
+LONGITUDE: not relevant
+DEC_LAT: not relevant
+DEC_LONG: not relevant
+EST_HRS_CLOSED: not relevant
+LANE_CLOSED: not relevant (interpreted as lane closure as a result of the crash)
+LN_CLOSE_DIR: not relevant
+NTFY_HIWY_MAINT: not relevant
+WZ_CLOSE_DETOUR: limited data
+WZ_FLAGGER: limited data
+WZ_LAW_OFFCR_IND: limited data
+WZ_LN_CLOSURE: limited data
+WZ_MOVING: limited data
+WZ_OTHER: limited data
+WZ_SHLDER_MDN: limited data
+FLAG_CRN: redundant
+PROPERTY_DAMAGE_ONLY: redundant
+INJURY: redundant
+FATAL: redundant
+NON_INTERSECTION: redundant
+DRIVER_COUNT_16YR: redundant
+DRIVER_COUNT_17YR: redundant
+DRIVER_COUNT_18YR: redundant
+DRIVER_COUNT_19YR: redundant
+DRIVER_COUNT_20YR: redundant
+DRIVER_COUNT_50_64YR: redundant
+DRIVER_COUNT_65_74YR: redundant
+DRIVER_COUNT_75PLUS: redundant
+VEHICLE_TOWED: not relevant
+MINOR_INJURY: redundant
+MODERATE_INJURY: redundant
+MAJOR_INJURY: redundant
+PSP_REPORTED: not relevant
+ROADWAY_CRN: redundant
+RDWY_SEQ_NUM: not relevant
+ADJ_RDWY_SEQ: not relevant
+ACCESS_CTRL: undefined meaning
+ROADWAY_COUNTY: only one value
+RDWY_ORIENT: not relevant
+ROUTE: not relevant (think about this one)
+TOT_INJ_COUNT: redundant
+SCHOOL_BUS_UNIT: undefined meaning
+LIMIT_65MPH: redundant and contradictory
