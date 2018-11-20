@@ -90,7 +90,6 @@ def cross_validate_user(dataMat, user, test_ratio, estMethod=standEst, simMeas=p
 	
 def test(dataMat, test_ratio, estMethod):
     
-    
     # Write this function to iterate over all users and for each perform evaluation by calling
 	# the above cross_validate_user function on each user. MAE will be the ratio of total error 
 	# across all test cases to the total number of test cases, for all users
@@ -103,11 +102,8 @@ def test(dataMat, test_ratio, estMethod):
     # (using "svdEst" as the prediction engine). [Note: See comments provided in the module for hints on
     # accomplishing these tasks.]
 
-    
     # Michael Janke Code
-    
-#    cross_validate_user(dataMat, user, test_ratio, estMethod=standEst, simMeas=pearsSim):
-    
+
     errorTotal = 0
     countTotal = 0
 
@@ -119,24 +115,43 @@ def test(dataMat, test_ratio, estMethod):
         #print 'user = ' + str(user) + ' error = ' + str(error_u) + '; count = ' + str(count_u) 
         errorTotal += error_u
         countTotal += count_u
-        user += 1
-
-    #for index, row in dataMat.iterrows():
-    #   error_u, count_u = cross_validate_user(dataMat, index, test_ratio, estMethod)  
-    #   print error_u      
+        user += 1    
     
     MAE = errorTotal / countTotal
     
     print 'Mean Absoloute Error for ' + estMethod.__name__ + ' : ' + str(MAE)
 
 def print_most_similar_jokes(dataMat, jokes, queryJoke, k, metric=pearsSim):
+
 	# Write this function to find the k most similar jokes (based on user ratings) to a queryJoke
 	# The queryJoke is a joke id as given in the 'jokes.csv' file (an corresponding to the a column in dataMat)
 	# You must compare ratings for the queryJoke (the column in dataMat corresponding to the joke), to all
 	# other joke rating vectors and return the top k. Note that this is the same as performing KNN on the 
     # columns of dataMat. The function must retrieve the text of the joke from 'jokes.csv' file and print both
 	# the queryJoke text as well as the text of the returned jokes.
-    print 'Most Similar'
+    
+    # Michael Janke Code
+    
+    similarities = []
+    data = dataMat.T
+    
+    # get all of the similarity scores
+    for i in range(len(data)):
+        # index is in second position to support sorting
+        similarities.append([metric(data[queryJoke], data[i]), i])
+        
+    # sort descending
+    similarities = sorted(similarities, reverse=True)
+    
+    # remove queryJoke compared to itself
+    similarities = similarities[1:]
+    
+    print 'Selected joke: \n\n', jokes[queryJoke], '\n'
+    print 'Top ' + str(k) + ' Recommended jokes are: \n'
+    
+    for i in range(k):
+        print jokes[similarities[i][1]]
+        print '_______________'
     
 def load_jokes(file):
     jokes = genfromtxt(file, delimiter=',', dtype=str)
