@@ -97,7 +97,7 @@ def test(dataMat, test_ratio, estMethod):
     
     # b.Complete the definition for the function "test". This function iterates over all users and for each performs
     # evaluation (by calling the provided "cross_validate_user" function), and returns the error information
-    # necessary to compute Mean Absolute Error (MAE). Use this function to perform evaluation (wiht 20% testratio
+    # necessary to compute Mean Absolute Error (MAE). Use this function to perform evaluation (with 20% testratio
     # for each user) comparing MAE results using standard item-based collaborative filtering (based on the
     # rating prediction function "standEst") with results using the SVD-based version of the rating item-based CF
     # (using "svdEst" as the prediction engine). [Note: See comments provided in the module for hints on
@@ -107,12 +107,27 @@ def test(dataMat, test_ratio, estMethod):
     # Michael Janke Code
     
 #    cross_validate_user(dataMat, user, test_ratio, estMethod=standEst, simMeas=pearsSim):
-
-    for index, row in dataMat.iterrows():
-        error_u, count_u = cross_validate_user(dataMat, index, test_ratio, estMethod)  
-        print error_u      
     
-	# print 'Mean Absoloute Error for ',estMethod,' : ', MAE
+    errorTotal = 0
+    countTotal = 0
+
+    number_of_users = np.shape(dataMat)[1]
+    user = 0
+    
+    while (user < number_of_users):
+        error_u, count_u = cross_validate_user(dataMat, user, test_ratio, estMethod) 
+        #print 'user = ' + str(user) + ' error = ' + str(error_u) + '; count = ' + str(count_u) 
+        errorTotal += error_u
+        countTotal += count_u
+        user += 1
+
+    #for index, row in dataMat.iterrows():
+    #   error_u, count_u = cross_validate_user(dataMat, index, test_ratio, estMethod)  
+    #   print error_u      
+    
+    MAE = errorTotal / countTotal
+    
+    print 'Mean Absoloute Error for ' + estMethod.__name__ + ' : ' + str(MAE)
 
 def print_most_similar_jokes(dataMat, jokes, queryJoke, k, metric=pearsSim):
 	# Write this function to find the k most similar jokes (based on user ratings) to a queryJoke
